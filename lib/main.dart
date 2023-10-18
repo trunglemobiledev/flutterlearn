@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tincoder/model/user.dart';
+import 'package:tincoder/user.dart';
 
 void main() {
   // runApp(const MyApp());
 
-  User user = User(1, 'Minh Trung');
-  user.id = 2;
-  user.name = 'Lê';
-  user.logInfor();
-  print(user.toString());
+  User user = User(10, "trung");
 
+  user.lohInfor();
+  // user.logAge();
+  user.func1();
+  user.func2();
 }
 
 class MyApp extends StatelessWidget {
