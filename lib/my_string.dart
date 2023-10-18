@@ -1,0 +1,1 @@
+const String msq_error = 'Error msg';

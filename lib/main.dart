@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:tincoder/user.dart';
+import 'my_string.dart';
+
+// Bài 29] - Phân biệt const và final trong lập trình Flutter
+
+// Const là giá trị sẽ được gán bết trước và không thể thay đổi, phải xác định giá trị ngày từ đầu
+const double PI = 3.14;
+const String TAG = 'TAG_NAME';
+
+// Final khi đã nhận giá trị thi khong the thay doi gia tri được nữa, khác với const thì final có 1 khoảng thời gian cho để gán giá trị (ví dụ: call api có 1 khoảng tg để xác định giá trị)
+final int a = 0;
 
 void main() {
   // runApp(const MyApp());
+  User user = const User(1);
+  User user1 = const User(1);
 
-  User user = User(10, "trung");
-  user.logExtension();
+  if(user == user1) {
+    print("Cùng địa chỉ ô nhớ");
+  } else {
+    print("K cùng đia chỉ ô nhớ");
+  }
+
 
 }
 
