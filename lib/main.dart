@@ -13,7 +13,7 @@ void main() {
               title: const Text('Flutter basic'),
             ),
             // body: const Center(child: Text('Hello Trung')))),
-            body: const MyWidget(true))),
+            body: const MyWidget2(false))),
     debugShowCheckedModeBanner: false, // tăt cai nhan debug
   ));
 }
@@ -32,5 +32,45 @@ class MyWidget extends StatelessWidget {
     return loading
         ? const Center(child: Text('State'))
         : const Center(child: CircularProgressIndicator());
+  }
+}
+
+// StatefulWidget
+// Tự tạo MyWidget2 ke thừa StatefulWidget
+class MyWidget2 extends StatefulWidget {
+  final bool loading;
+
+  const MyWidget2(this.loading, {super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return MyWidget2State();
+  }
+}
+
+class MyWidget2State extends State<MyWidget2> {
+  late bool _localLoading; //late là sẽ khởi tạo trễ sau khi khai báo
+  @override
+  void initState() {
+    super.initState();
+
+    // InitState được call sau khi MyWidget2 được khởi tạo và trước hàm build
+    // Dùng để khởi tạo giá trị ban đầu
+    _localLoading = widget
+        .loading; // widget là 1 instance đề truy cập thuộc tính của class StatefulWidget
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _localLoading
+        ? const Center(child: CircularProgressIndicator())
+        : FloatingActionButton(onPressed: onClickButton);
+  }
+
+  // Sụ kiện xử lí state _localLoading bawfnf hàm setState
+  void onClickButton() {
+    setState(() {
+      _localLoading = true;
+    });
   }
 }
