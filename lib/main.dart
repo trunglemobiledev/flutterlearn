@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:tincoder/model/user.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+
+  User user = User(1, 'Minh Trung');
+  user.id = 2;
+  user.name = 'Lê';
+  user.logInfor();
+  print(user.toString());
+
 }
 
 class MyApp extends StatelessWidget {
