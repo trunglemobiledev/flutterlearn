@@ -6,6 +6,9 @@ void main() {
   // Hàm runApp(x) là hàm chạy đầu tiên trong main() để run app;
   runApp(MaterialApp(
     // Sử dụng các thành phần giao diện người dùng;
+    theme: ThemeData(
+      fontFamily: 'UTMAvo' //Set font cho cả dự án
+    ),
     home: SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -13,7 +16,7 @@ void main() {
               title: const Text('Flutter basic'),
             ),
             // body: const Center(child: Text('Hello Trung')))),
-            body: const MyWidget2(false))),
+            body: const MyWidget())),
     debugShowCheckedModeBanner: false, // tăt cai nhan debug
   ));
 }
@@ -21,74 +24,32 @@ void main() {
 // StatelessWidget :
 // Tự tạo MyWidget ke thừa StatelessWidget
 class MyWidget extends StatelessWidget {
-  final bool loading;
-
-  const MyWidget(this.loading, {super.key});
+  const MyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     // hàm buil() bắc buộc phải có trong StatelessWidget
     // Là 1 hàm càn ghi đè lại
-    return loading
-        ? const Center(child: Text('State'))
-        : const Center(child: CircularProgressIndicator());
+    return const Text(
+      ' Nếu ai muốn ủng hộ mình, thì Donate cho mình qua thông '
+      'tin bên dưới nhé ,  Nếu ai muốn ủng hộ mình, thì Donate c'
+      'ho mình qua thông tin bên dưới nhé Nếu ai muốn ủng hộ mình, '
+      'thì Donate cho mình qua thông tin bên dưới nhé',
+      textDirection: TextDirection.ltr,
+      textAlign: TextAlign.justify,
+      maxLines: 4,
+      overflow: TextOverflow.fade,
+      style: TextStyle(
+          // backgroundColor: Colors.deepOrange,
+          color: Colors.deepPurple,
+          fontSize: 15,
+          fontWeight: FontWeight.w700,
+          // fontStyle: FontStyle.italic,
+          letterSpacing: 0.2,
+          wordSpacing: 3,
+          decoration: TextDecoration.none,
+          // fontFamily: 'Times New Roman'
+      ),
+    );
   }
 }
-
-// StatefulWidget
-// Tự tạo MyWidget2 ke thừa StatefulWidget
-class MyWidget2 extends StatefulWidget {
-  final bool loading;
-
-  const MyWidget2(this.loading, {super.key});
-
-  @override
-  State<StatefulWidget> createState() {
-    return MyWidget2State();
-  }
-}
-
-class MyWidget2State extends State<MyWidget2> {
-  late bool _localLoading; //late là sẽ khởi tạo trễ sau khi khai báo
-  @override
-  void initState() {
-    super.initState();
-
-    // InitState được call sau khi MyWidget2 được khởi tạo và trước hàm build
-    // Dùng để khởi tạo giá trị ban đầu
-    _localLoading = widget
-        .loading; // widget là 1 instance đề truy cập thuộc tính của class StatefulWidget
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _localLoading
-        ? const Center(child: CircularProgressIndicator())
-        : FloatingActionButton(onPressed: onClickButton);
-  }
-
-  // Sụ kiện xử lí state _localLoading bawfnf hàm setState
-  void onClickButton() {
-    setState(() {
-      _localLoading = true;
-    });
-  }
-}
-
-// So sánh state less và state full
-
-// Điểm giống nhau
-  // Đề cần hàm buil(),
-
-
-// Điểm khác nhau
-//   State full Cần 2 bước để có hàm build phải có class stete thứ 2 , các hàm xử lí được viết ở class state vì ở đây có hàm build
-// State less không có init State và khong set lại được state
-
-// Cách dùng
-
-// nhưng thành phần không tương tác nguoi dung thi dung State less
-
-// nhưng thành phần tương tác người dùng có đổ dữ liệu và state cần thay đoi thi sư dung state full widget
-
-
