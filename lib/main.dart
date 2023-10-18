@@ -5,10 +5,7 @@ void main() {
   // runApp(const MyApp());
 
   User user = User(10, "trung");
-  user.logFavorite();
-  user.play();
-  user.readBook();
-  user.music();
+  user.logExtension();
 
 }
 
