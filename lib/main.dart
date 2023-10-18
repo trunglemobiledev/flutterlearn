@@ -74,3 +74,21 @@ class MyWidget2State extends State<MyWidget2> {
     });
   }
 }
+
+// So sánh state less và state full
+
+// Điểm giống nhau
+  // Đề cần hàm buil(),
+
+
+// Điểm khác nhau
+//   State full Cần 2 bước để có hàm build phải có class stete thứ 2 , các hàm xử lí được viết ở class state vì ở đây có hàm build
+// State less không có init State và khong set lại được state
+
+// Cách dùng
+
+// nhưng thành phần không tương tác nguoi dung thi dung State less
+
+// nhưng thành phần tương tác người dùng có đổ dữ liệu và state cần thay đoi thi sư dung state full widget
+
+
