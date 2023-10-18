@@ -6,10 +6,9 @@ void main() {
 
   User user = User(10, "trung");
 
-  user.lohInfor();
-  // user.logAge();
+  user.showCity();
   user.func1();
-  user.func2();
+  user.showAdress();
 }
 
 class MyApp extends StatelessWidget {

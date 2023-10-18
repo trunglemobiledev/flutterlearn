@@ -1,31 +1,33 @@
-// Tính kế thừa (extends) & tính trừa tượng (abstract ) trong ngôn ngữ Dart
-
+import 'package:tincoder/address.dart';
+import 'package:tincoder/city.dart';
 import 'package:tincoder/people.dart';
 import 'package:tincoder/person.dart';
 
-class User extends People {
+// trong dart dùng extend chi kế thừa được từ 1 class không thể nào đa ke thừa
+// Dùng  Interfaces (implements) Tìm hiểu về Interfaces (implements) trong ngôn ngữ Dart
+// implements mặc dù không phải hàm trừu tượng nhung van phai bac buoc ghi đè (vi du showCity)  và nên implements lớp trừu tượng, hàm trừu tượng để ghi đè lại method lại
+
+class User implements City, Address{
   int id = 0;
   String name = '';
 
-  // User(this.id, this.name) : super(18); // super là khơi tạo thuocn tinh cho lop cha có ham khoi tao yeu cầu (ke thua tu Person)
-   User(this.id, this.name) ; // super là khơi tạo thuocn tinh cho lop cha có ham khoi tao yeu cầu
+  User(this.id, this.name);
 
-
-  void lohInfor() {
-    // print('$id - $name - $age'); // Thuộc tính age được k thưa từ lớp cha person
-    print('$id - $name');
+  @override
+  void showCity() {
+    // TODO: implement showCity
+    print("override showCity");
   }
 
   @override
-  void func1() { // Hàm này bắc buộc ghi đè
+  void func1() {
     // TODO: implement func1
     print("override func1");
   }
 
   @override
-  void func2() {
-    // TODO: implement func2
-    super.func2();
-    print("override func2");
+  void showAdress() {
+    // TODO: implement showAdress
+    print("override showAdress");
   }
 }
