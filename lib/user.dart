@@ -1,33 +1,32 @@
-import 'package:tincoder/address.dart';
-import 'package:tincoder/city.dart';
-import 'package:tincoder/people.dart';
+// Sử dụng Mixins (with) trong lập trình Flutter (từ khóa with) không phải quan hệ kế thừa
+// Mixin cũng dùng được cho lớp trừu tượng và hàm trừu tượng
+// Mixin with được với nhiều class (hữu dụng khi dart không dùng được đa kế thừa)
+
+// Từ khóa 'on' giới hạn sử dụng mixin bất và 'on' chỉ sử dụng được kèm với từ khóa mixin
+
+import 'package:tincoder/football.dart';
+import 'package:tincoder/music.dart';
 import 'package:tincoder/person.dart';
+import 'package:tincoder/readbook.dart';
 
-// trong dart dùng extend chi kế thừa được từ 1 class không thể nào đa ke thừa
-// Dùng  Interfaces (implements) Tìm hiểu về Interfaces (implements) trong ngôn ngữ Dart
-// implements mặc dù không phải hàm trừu tượng nhung van phai bac buoc ghi đè (vi du showCity)  và nên implements lớp trừu tượng, hàm trừu tượng để ghi đè lại method lại
-
-class User implements City, Address{
+class User extends Person with Football, ReadBook, Music {  // Kế thừa Person để sử dụng mixin Music do mixin Music được 'on giới hạn với Person class'
   int id = 0;
   String name = '';
 
   User(this.id, this.name);
-
-  @override
-  void showCity() {
-    // TODO: implement showCity
-    print("override showCity");
+  
+  void logFavorite() {
+    logFootball();
   }
 
   @override
-  void func1() {
-    // TODO: implement func1
-    print("override func1");
+  void play() {
+    // TODO: implement
+    print('override play Football');
   }
 
   @override
-  void showAdress() {
-    // TODO: implement showAdress
-    print("override showAdress");
+  void music1() {
+    // TODO: implement music1
   }
 }
