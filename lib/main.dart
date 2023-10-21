@@ -29,21 +29,17 @@ class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // hàm buil() bắc buộc phải có trong StatelessWidget
     // Là 1 hàm càn ghi đè lại
-    return Center(
-      child: RichText(
-          text: const TextSpan(children: <TextSpan>[
-        TextSpan(
-            text: "hello",
-            style: TextStyle(color: Colors.deepOrange, fontSize: 30)),
-        TextSpan(
-            text: "đá", style: TextStyle(color: Colors.black12, fontSize: 30)),
-        TextSpan(
-            text: "last",
-            style: TextStyle(color: Colors.black38, fontSize: 30)),
-        TextSpan(
-            text: "helládsadsado",
-            style: TextStyle(color: Colors.blueAccent, fontSize: 30)),
-      ])),
+    // Card :
+    return const Card(
+      color: Colors.lightGreen,
+      margin: EdgeInsets.all(60.0), // Margin là thuộc tính của class Card
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+        child: Text(
+          'Hello Piter',
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
+      ),
     );
   }
 }
