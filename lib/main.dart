@@ -32,25 +32,32 @@ class MyWidget extends StatelessWidget {
     // Card :
     return Center(
       child: Container(
-        color: Colors.greenAccent,
         margin: const EdgeInsets.only(left: 50),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextButton(
-              onPressed: () => print("Hello"),
+          padding: const EdgeInsets.all(11.0),
+          child: TextButton.icon(
+              icon: const Icon(Icons.add, size: 30), // Icon cho button
+              onPressed: null, // Set null để disable button
+              // onPressed: () => print("Hello"),
               style: TextButton.styleFrom(
-                  minimumSize: const Size(120, 60),
+                  padding: const EdgeInsets.all(12.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18)),
+                  // minimumSize: const Size(120, 60),
+                  elevation: 30, // Shadows
+                  shadowColor: Colors.red.withOpacity(1), // Shadows
+                  side: const BorderSide(
+                      width: 2, color: Colors.lightGreenAccent), // Màu viền
                   foregroundColor: Colors.greenAccent,
-                  backgroundColor: Colors.blueGrey),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Show war',
-                  style: TextStyle(
-                      color: Colors.amber,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w800),
-                ),
+                  backgroundColor: Colors.blueGrey,
+                  //   Style khi disable
+                  disabledBackgroundColor: Colors.grey),
+              label: const Text(
+                'Show war',
+                style: TextStyle(
+                    color: Colors.amber,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.w800),
               )),
         ),
       ),
