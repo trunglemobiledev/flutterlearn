@@ -30,14 +30,28 @@ class MyWidget extends StatelessWidget {
     // hàm buil() bắc buộc phải có trong StatelessWidget
     // Là 1 hàm càn ghi đè lại
     // Card :
-    return const Card(
-      color: Colors.lightGreen,
-      margin: EdgeInsets.all(60.0), // Margin là thuộc tính của class Card
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 40, horizontal: 40),
-        child: Text(
-          'Hello Piter',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+    return Center(
+      child: Container(
+        color: Colors.greenAccent,
+        margin: const EdgeInsets.only(left: 50),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextButton(
+              onPressed: () => print("Hello"),
+              style: TextButton.styleFrom(
+                  minimumSize: const Size(120, 60),
+                  foregroundColor: Colors.greenAccent,
+                  backgroundColor: Colors.blueGrey),
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Show war',
+                  style: TextStyle(
+                      color: Colors.amber,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w800),
+                ),
+              )),
         ),
       ),
     );
