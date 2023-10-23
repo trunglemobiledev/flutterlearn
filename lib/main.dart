@@ -31,36 +31,26 @@ class MyWidget extends StatelessWidget {
     // Là 1 hàm càn ghi đè lại
     // Card :
     return Center(
-      child: Container(
-        margin: const EdgeInsets.only(left: 50),
-        child: Padding(
-          padding: const EdgeInsets.all(11.0),
-          child: TextButton.icon(
-              icon: const Icon(Icons.add, size: 30), // Icon cho button
-              onPressed: null, // Set null để disable button
-              // onPressed: () => print("Hello"),
-              style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(12.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18)),
-                  // minimumSize: const Size(120, 60),
-                  elevation: 30, // Shadows
-                  shadowColor: Colors.red.withOpacity(1), // Shadows
-                  side: const BorderSide(
-                      width: 2, color: Colors.lightGreenAccent), // Màu viền
-                  foregroundColor: Colors.greenAccent,
-                  backgroundColor: Colors.blueGrey,
-                  //   Style khi disable
-                  disabledBackgroundColor: Colors.grey),
-              label: const Text(
-                'Show war',
-                style: TextStyle(
-                    color: Colors.amber,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w800),
-              )),
-        ),
-      ),
+      child: ElevatedButton.icon(
+          icon: const Icon(Icons.add),
+          onPressed: () => print("object"),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.lightGreenAccent,
+              foregroundColor: Colors.green,
+              padding: const EdgeInsets.all(10),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              shadowColor: Colors.orange.withOpacity(1),
+              elevation: 10,
+              side: const BorderSide(width: 4, color: Colors.amberAccent),
+              minimumSize: const Size(60, 50)),
+          label: const Text(
+            "hello",
+            style: TextStyle(
+                color: Colors.lightBlue,
+                fontSize: 30,
+                fontWeight: FontWeight.w800),
+          )),
     );
   }
 }
