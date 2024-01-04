@@ -1,56 +1,95 @@
-// B1: khái báo import thư viện
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-// B2 Hàm main hàm chạy đầu tiên
+import 'package:flutter/material.dart';
+// import 'package:tincoder/user.dart';
+
 void main() {
-  // Hàm runApp(x) là hàm chạy đầu tiên trong main() để run app;
-  runApp(MaterialApp(
-    // Sử dụng các thành phần giao diện người dùng;
-    theme: ThemeData(fontFamily: 'UTMAvo' //Set font cho cả dự án
-        ),
-    home: SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.deepPurpleAccent,
-              title: const Text('Flutter basic'),
-            ),
-            // body: const Center(child: Text('Hello Trung')))),
-            body: const MyWidget())),
-    debugShowCheckedModeBanner: false, // tăt cai nhan debug
-  ));
+  runApp(const MyApp());
 }
 
-// StatelessWidget :
-// Tự tạo MyWidget ke thừa StatelessWidget
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // hàm buil() bắc buộc phải có trong StatelessWidget
-    // Là 1 hàm càn ghi đè lại
-    // Card :
-    return Center(
-      child: ElevatedButton.icon(
-          icon: const Icon(Icons.add),
-          onPressed: () => print("object"),
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.lightGreenAccent,
-              foregroundColor: Colors.green,
-              padding: const EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              shadowColor: Colors.orange.withOpacity(1),
-              elevation: 10,
-              side: const BorderSide(width: 4, color: Colors.amberAccent),
-              minimumSize: const Size(60, 50)),
-          label: const Text(
-            "hello",
-            style: TextStyle(
-                color: Colors.lightBlue,
-                fontSize: 30,
-                fontWeight: FontWeight.w800),
-          )),
+    return const MaterialApp(
+      showSemanticsDebugger: false,
+      // title: 'Flutter Demo',
+      home: MyHomePage(),
     );
   }
 }
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  var text = "default";
+
+  // Kiểu await
+  Future<String> textFunc2() {
+    return Future.delayed(const Duration(seconds: 5), () => "Hello text");
+  }
+
+  // Kiểu Completer
+  Future<String> textFunc() {
+    var value = Completer<String>();
+    Future.delayed(
+        const Duration(seconds: 2), () => value.complete("Hello text"));
+    return value.future;
+  }
+
+  onPressed() async {
+    textFunc().then((value) {
+      setState(() {
+        text = value;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: FutureBuilder(
+              future: textFunc2(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+                if (snapshot.hasData) {
+                  var value = snapshot.data.toString();
+                  return Text(value);
+                }
+                if (snapshot.hasError) {
+                  print(snapshot.error);
+                }
+                return Text("Text");
+              },
+            ),
+          )
+          //   Center(
+          //     child: Text(
+          //       text,
+          //       style: const TextStyle(fontSize: 30),
+          //     ),
+          //   ),
+          //   Center(
+          //     child: ElevatedButton(
+          //         onPressed: onPressed, child: const Text("onPressed")),
+          //   )
+        ],
+      ),
+    );
+  }
+}
+
+//https://www.youtube.com/playlist?list=PLIP1FbDpyHbH4OCLxtHK9KgZ3R7bn_gG7
